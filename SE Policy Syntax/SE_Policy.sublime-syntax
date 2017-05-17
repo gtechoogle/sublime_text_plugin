@@ -1,0 +1,20 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: SELinux Policy
+file_extensions:
+  - te
+scope: source.c
+contexts:
+  main:
+    - match: 'allow|neverallow'
+      scope: keyword.control.c
+    - match: ':'
+      push: string
+  string:
+    - meta_scope: string.quoted.double.c
+    - match: \#.
+      scope: constant.character.escape.c
+    - match: '"'
+      pop: true
+
